@@ -10,5 +10,5 @@ void ir_sensor_init(int pin) {
 }
 
 bool ir_sensor_detect() {
-    return gpio_get(ir_sensor_pin);  // Returns true if an object is detected
+    return !gpio_get(ir_sensor_pin);  // Returns true if an object is detected
 }

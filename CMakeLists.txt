@@ -20,6 +20,9 @@ add_executable(${PROJECT_NAME}
     servo.c
     ir_sensor.c
     conveyor_belt.c
+    ServoMotor.c
+    Motor.c
+    ColorSensor.c 
 )
 
 # Create map/bin/hex/uf2 files

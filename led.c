@@ -2,7 +2,7 @@
 #include "led.h"
 
 // Define the GPIO pins for the RGB LED
-#define RED_LED_PIN 25
+#define RED_LED_PIN 25 
 #define GREEN_LED_PIN 15
 #define BLUE_LED_PIN 16
 

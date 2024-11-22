@@ -20,9 +20,9 @@ add_executable(${PROJECT_NAME}
     servo.c
     ir_sensor.c
     conveyor_belt.c
-    ServoMotor.c
     Motor.c
-    ColorSensor.c 
+    ColorSensor.c
+    fsr.c 
 )
 
 # Create map/bin/hex/uf2 files
@@ -32,6 +32,7 @@ pico_add_extra_outputs(${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} 
     pico_stdlib
     hardware_pwm
+    hardware_adc
 )
 
 # Enable usb output, disable uart output

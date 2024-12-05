@@ -10,11 +10,11 @@
 // #define ROTATE_0_SERVO_2_PIN_16 2250
 // #define ROTATE_180_SERVO_2_PIN_16 350
 
-#define ROTATE_0_SERVO_1_PIN_17 2000
-#define ROTATE_180_SERVO_1_PIN_17 350
+#define ROTATE_0_SERVO_1_PIN_17 2000 // ~2ms pulse "90" position all the way right
+#define ROTATE_180_SERVO_1_PIN_17 350 // ~1ms pulse "-90" position all the way left
 
-#define ROTATE_0_SERVO_2_PIN_16 2000
-#define ROTATE_180_SERVO_2_PIN_16 350
+#define ROTATE_0_SERVO_2_PIN_16 2000 // ~2ms pulse "90" position all the way right
+#define ROTATE_180_SERVO_2_PIN_16 350 // ~1ms pulse "-90" position all the way lef
 
 void servo_init(int pin) {
     gpio_set_function(pin, GPIO_FUNC_PWM);
@@ -29,7 +29,7 @@ void servo_init(int pin) {
 
     pwm_set_clkdiv(slice_num, clk_divider);
 
-    /* Set system period to 20 ms. */
+    /* Set system period to 20 ms (50 Hz). */
     pwm_set_wrap(slice_num, 20000);
 
     pwm_set_enabled(slice_num, true);
@@ -38,7 +38,7 @@ void servo_init(int pin) {
 void servo_set_angle(int pin, int angle) {
     uint slice_num = pwm_gpio_to_slice_num(pin);
 
-    // Map angle (0-180) to pulse width (1ms to 2ms)
+    // Map angle (0-180) to pulse width (~1ms to ~2ms)
     if(pin == 16){
         uint level = (((float)(ROTATE_180_SERVO_2_PIN_16 - ROTATE_0_SERVO_2_PIN_16) / 180.0) * angle) + ROTATE_0_SERVO_2_PIN_16;
         pwm_set_chan_level(slice_num, pwm_gpio_to_channel(pin), level);
@@ -46,7 +46,7 @@ void servo_set_angle(int pin, int angle) {
         }
     else if (pin == 17){
         uint level = (((float)(ROTATE_180_SERVO_1_PIN_17 - ROTATE_0_SERVO_1_PIN_17) / 180.0) * angle) + ROTATE_0_SERVO_1_PIN_17;
-        pwm_set_chan_level(slice_num, pwm_gpio_to_channel(pin), level);
+        pwm_set_chan_level(slice_num, pwm_gpio_to_channel(pin), level); 
     }
 }
 

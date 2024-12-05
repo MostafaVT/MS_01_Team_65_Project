@@ -24,7 +24,8 @@
 #define S0_PIN 26
 #define S1_PIN 27
 #define S2_PIN 28
-#define S3_PIN 29
+// #define S3_PIN 29
+#define S3_PIN 17
 #define OUT_PIN 12
 // FSR PIN
 // #define FSR_PIN 13  // ADC5
@@ -35,7 +36,7 @@
 int main() {
     stdio_init_all();
 
-    // // Motor test
+    // Motor test
 
     // motor_init(
     //     MOTOR1_IN1_PIN, MOTOR1_IN2_PIN, MOTOR1_ENABLE_PIN,
@@ -46,13 +47,13 @@ int main() {
     // while (1) {
     //     motor_set_direction(MOTOR1_IN1_PIN, MOTOR1_IN2_PIN, true);
     //     motor_set_direction(MOTOR2_IN3_PIN, MOTOR2_IN4_PIN, true);
-    // }
+    // } 
 
     ///////////////////////////////////////////////////////////////////////////
 
-    // //IR Sensor test AND SERVO test
+    //IR Sensor test AND SERVO test
 
-    // conveyor_belt_init(IR_SENSOR_PIN, SERVO1_PIN, SERVO2_PIN, BUTTON_PIN);
+    conveyor_belt_init(IR_SENSOR_PIN, SERVO1_PIN, SERVO2_PIN, BUTTON_PIN);
 
     // while (1) {
     //     conveyor_belt_run();
@@ -64,7 +65,22 @@ int main() {
 
     color_sensor_init(S0_PIN, S1_PIN, S2_PIN, S3_PIN, OUT_PIN);
 
+    fsr_init(FSR_PIN);
+
+
     while (1) {
+        conveyor_belt_run();
+
+        float weight = fsr_read_weight();
+        printf("Weight: %.2f \n", weight);
+
+        float voltage = fsr_read_voltage();
+        printf("FSR Voltage: %.2f V\n", voltage);
+
+        printf("-------------------------------------------\n");      
+        sleep_ms(1000);
+
+
         // Select RED filter
         gpio_put(S2_PIN, 0);
         gpio_put(S3_PIN, 0);
@@ -93,14 +109,14 @@ int main() {
     // fsr_init(FSR_PIN);
 
     // while (true) {
-    //     float weight = fsr_read_weight();
-    //     printf("Weight: %.2f \n", weight);
+        // float weight = fsr_read_weight();
+        // printf("Weight: %.2f \n", weight);
 
-    //     float voltage = fsr_read_voltage();
-    //     printf("FSR Voltage: %.2f V\n", voltage);
+        // float voltage = fsr_read_voltage();
+        // printf("FSR Voltage: %.2f V\n", voltage);
 
-    //     printf("-------------------------------------------\n");      
-    //     sleep_ms(500);
+        // printf("-------------------------------------------\n");      
+        // sleep_ms(500);
     // }
 
     return 0;

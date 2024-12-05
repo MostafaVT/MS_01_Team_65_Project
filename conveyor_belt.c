@@ -22,11 +22,11 @@ void conveyor_belt_init(int ir_pin, int servo1, int servo2, int button) {
     button_pin = button;
 
     ir_sensor_init(ir_sensor_pin);
-    servo_init(servo1_pin);
+    // servo_init(servo1_pin);
     servo_init(servo2_pin);
     button_init(button_pin);
 
-    servo_set_angle(servo1_pin, 0);
+    // servo_set_angle(servo1_pin, 0);
     servo_set_angle(servo2_pin, 0);
 }
 
@@ -35,15 +35,16 @@ void conveyor_belt_run() {
     if (ir_sensor_detect()) {
         
         object_count++;
-        printf("Object Count: %d\n", object_count);
+        printf("Objects Count: %d\n", object_count);
+        sleep_ms(1000);
 
         printf("Opening servos...\n");
-        servo_set_angle(servo1_pin, 90);
+        // servo_set_angle(servo1_pin, 90);
         servo_set_angle(servo2_pin, 90);
         sleep_ms(3000);
 
         printf("Closing servos...\n");
-        servo_set_angle(servo1_pin, 0);
+        // servo_set_angle(servo1_pin, 0);
         servo_set_angle(servo2_pin, 0);
     }
 

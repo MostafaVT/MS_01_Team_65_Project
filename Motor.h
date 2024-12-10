@@ -5,7 +5,9 @@
 
 void motor_init(int in1_pin_1, int in2_pin_1, int enable_pin_1,int in3_pin_2, int in4_pin_2, int enable_pin_2);
 
-void motor_set_direction(int pin1,int pin2, bool forward);
+void motor_set_speed(int motor_num, float speed);
+
+void motor_set_direction(int motor_num, bool forward);
 
 void motor_start();
 

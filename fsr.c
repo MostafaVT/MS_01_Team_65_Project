@@ -21,7 +21,7 @@ float fsr_read_weight() {
     float voltage = (raw_value * 3.3) / 4095.0;  // Convert to voltage (0-3.3V) where ADC register is 12-bit
 
     // mapping for max voltage corresponds to 5kg
-    float weight = (voltage / 3.3) * 5.0;  // Scale to 0-5kg
+    float weight = (voltage / 3.3) * 10.0;  // Scale to 0-5kg
 
     return weight;
 }

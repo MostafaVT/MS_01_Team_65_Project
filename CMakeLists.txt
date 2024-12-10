@@ -9,6 +9,10 @@ project(CONVRYOR_BELT C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
+# After the pico_sdk_import but before pico_sdk_init
+# set(FREERTOS_KERNEL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS-Kernel)
+# include(${FREERTOS_KERNEL_PATH}/portable/ThirdParty/GCC/RP2040/FreeRTOS_Kernel_import.cmake)
+
 # Creates a pico-sdk subdirectory in our project for the libraries
 pico_sdk_init()
 
